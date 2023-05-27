@@ -22,7 +22,18 @@ function App() {
             setAlert(null);
         }, 2000);
   }
-  const toggleMode = ()=>{
+
+  const removeBodyClasses =()=>{
+    document.body.classList.remove('bg-light');
+    document.body.classList.remove('bg-dark');
+    document.body.classList.remove('bg-warning');
+    document.body.classList.remove('bg-danger');
+    document.body.classList.remove('bg-success');
+
+  }
+  const toggleMode = (cls)=>{
+    removeBodyClasses();
+    document.body.classList.add('bg-'+cls);
     if(mode === 'light'){
       setmode('dark')
       document.body.style.backgroundColor = '#101235'
@@ -45,7 +56,7 @@ function App() {
 <Alert alert={alert}/>
 <div className="container my-3" >
       <Routes>
-          <Route exact path="/about" element={<About />} />
+          <Route exact path="/about" element={<About mode={mode}/>} />
           <Route exact path="/" element={ <TextForm showAlert={showAlert} heading= "Enter the text to analize below" mode={mode}/>}/>
       </Routes>
 </div>
